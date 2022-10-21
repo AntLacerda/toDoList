@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 04</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+        #botao{
+            border: 1px solid black;
+            width: 100px;
+            text-align: center;
+            color: white;
+            margin-left: 5px;
+            background-color: red;
+            cursor: pointer;
+        }
+
+        .alinhamento{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .estilo_PostIt{
+            width: 150px;
+            height: 150px;
+            background-color: rgb(255, 255, 153);
+            text-align: center;
+            margin: 10px;
+            border-radius: 5px;
+            padding-top: 20px;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .botao_remover{
+            width: 20px;
+            height: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="alinhamento">
+        <input type="text" id="texto">
+        <div id="botao" onclick="postIt()">Salvar</div>
+    </div>
+
+
+    <script>
+        let obj = document.getElementById("botao");
+        
+        const postIt = () => {
+
+            let valor_usuario = document.getElementById("texto").value;
+            let corpo = document.querySelector("body");
+            console.log(valor_usuario);
+            let elemento_PostIt = document.createElement("div");
+            elemento_PostIt.classList.add("estilo_PostIt");
+            let conteudo = document.createElement("p");
+            elemento_PostIt.appendChild(conteudo);
+            conteudo.textContent = `${valor_usuario}`;
+            corpo.appendChild(elemento_PostIt);
+            let botao_remover = document.createElement("button");
+            botao_remover.classList.add("botao_remover");
+            elemento_PostIt.appendChild(botao_remover);
+            botao_remover.textContent = "x";
+            botao_remover.addEventListener("click", () => {
+                corpo.removeChild(elemento_PostIt);
+            })
+
+        }
+
+        
+    </script>
+</body>
+</html>
